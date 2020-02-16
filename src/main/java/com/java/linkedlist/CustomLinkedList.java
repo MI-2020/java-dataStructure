@@ -101,22 +101,23 @@ class CustomLinkedList<E> {
 		System.out.println("No Node Found!");
 	}
 
-	public void searchData(E inputData) {
+	public boolean searchData(E inputData) {
 
 		if (head == null) {
 			System.out.println("List is Empty: Node not Found!");
-			return;
+			return false;
 		}
 
 		Node<E> tempNode = head;
 		while (tempNode != null) {
 			if (tempNode.data == inputData) {
 				System.out.println("Node Found!");
-				return;
+				return true;
 			}
 			tempNode = tempNode.next;
 		}
 		System.out.println("Node not Found");
+		return false;
 	}
 
 	public void traverse() {
@@ -154,7 +155,7 @@ class CustomLinkedList<E> {
 		// traverse();
 	}
 
-	public void findMiddleNode() {
+	public E findMiddleNode() {
 
 		Node<E> pointer1 = head, pointer2 = head;
 		int count = 1;
@@ -166,9 +167,10 @@ class CustomLinkedList<E> {
 			count++;
 		}
 		System.out.println("Middle Element:" + pointer2.data);
+		return pointer2.data;
 	}
 	
-	public void NthNodeFromLast(int Nth) {
+	public E NthNodeFromLast(int Nth) {
 
 		Node<E> pointer1 = head, pointer2 = head;
 		int count = 1;
@@ -178,7 +180,7 @@ class CustomLinkedList<E> {
 		}
 		if (count <= Nth) {
 			System.out.println("Length is less in LinkedList");
-			return;
+			return null;
 		}
 
 		while (pointer1 != null) {
@@ -186,6 +188,7 @@ class CustomLinkedList<E> {
 			pointer2 = pointer2.next;
 		}
 		System.out.println("Nth Node is:" + pointer2.data);
+		return pointer2.data;
 	}
 
 	public int sizeOfLinkedListRecursive(Node<E> tempNode) {
@@ -195,7 +198,7 @@ class CustomLinkedList<E> {
 		return 1 + sizeOfLinkedListRecursive(tempNode.next);
 	}
 
-	public void removeNthNodeFromLast(int Nth) {
+	public boolean removeNthNodeFromLast(int Nth) {
 
 		Node<E> pointer1 = head, pointer2 = head;
 		int count = 1;
@@ -207,7 +210,7 @@ class CustomLinkedList<E> {
 		}
 		if (count <= Nth) {
 			System.out.println("Length is less in LinkedList");
-			return;
+			return false;
 		}
 
 		Node<E> prev = null;
@@ -218,6 +221,7 @@ class CustomLinkedList<E> {
 		}
 		prev.next = pointer2.next;
 		System.out.println("Nth Node is:" + pointer2.data);
+		return true;
 	}
 }
 
