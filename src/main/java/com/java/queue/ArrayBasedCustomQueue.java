@@ -27,20 +27,23 @@ public class ArrayBasedCustomQueue<E> {
 			System.out.println("Queue is full!");
 		}else {
 			rear = rear+1;
+			front = 0;
 			queue[rear] = data;
 		}	
 	}
 
-	public void deuqe() {
+	public E deuqe() {
 		
-		if(front == -1) { //or rear = -1
+		if(rear == -1) { //or rear = -1
 			System.out.println("Queue is Empty!");
-			return;
+			return null;
 		}else {
+			E data = queue[0]; 
 			for(int i=0;i <= rear ; i++) {
 				queue[i] = queue[i+1];
 			}
 			rear--;
+			return data;
 		}
 	}
 
@@ -52,5 +55,9 @@ public class ArrayBasedCustomQueue<E> {
 		for(int i=0; i <= rear; i++) {
 			System.out.println(queue[i]);
 		}
+	}
+	
+	public boolean isEmpty() {
+		return front == -1? true: false; 
 	}
 }

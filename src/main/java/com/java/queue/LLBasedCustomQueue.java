@@ -9,13 +9,13 @@ package com.java.queue;
  */
 public class LLBasedCustomQueue<E> {
 
-	QNode<E> front; // for removal
-	QNode<E> rear; // for addition
+	private QNode<E> front; // for removal
+	private QNode<E> rear; // for addition
 
-	static class QNode<E> {
+	public static class QNode<E> {
 
-		E data;
-		QNode<E> next;
+		private E data;
+		private QNode<E> next;
 
 		QNode(E data) {
 			this.data = data;
@@ -33,14 +33,19 @@ public class LLBasedCustomQueue<E> {
 		rear = newNode;
 	}
 
-	public void deuqe() {
+	public E deuqe() {
 
 		if (front == null)
-			return;
+			return null;
 
 		QNode<E> tempNode = front;
-		front = front.next;
-		tempNode.next = null; // deference so that pick by GC
+		if(front.next == null) {
+			front = rear = null;
+		}else {
+			front = front.next;
+		}
+		tempNode.next = null; // dereference so that pick by GC
+		return tempNode.data;
 	}
 
 	public void traverse() {
@@ -52,5 +57,13 @@ public class LLBasedCustomQueue<E> {
 			System.out.println(front.data);
 			front = front.next;
 		}
+	}
+	
+	public boolean isEmpty() {
+		return front == null? true: false; 
+	}
+	
+	public E first() {
+		return front == null? null: front.data; 
 	}
 }

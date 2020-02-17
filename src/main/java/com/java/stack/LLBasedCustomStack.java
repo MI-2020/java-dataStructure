@@ -58,4 +58,9 @@ public class LLBasedCustomStack<E> {
 			top = top.next;
 		}
 	}
+	
+	public boolean isEmpty() {
+
+		return top == null ? true:false;
+	}
 }
