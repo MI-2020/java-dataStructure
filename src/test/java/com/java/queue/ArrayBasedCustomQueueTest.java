@@ -1,7 +1,5 @@
 package com.java.queue;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,8 +12,7 @@ public class ArrayBasedCustomQueueTest {
 	public void setUp() throws Exception {
 		arrayCustQueue =new ArrayBasedCustomQueue<>(10);
 		arrayCustQueue.enquqe(10);
-		arrayCustQueue.enquqe(20);
-		
+		arrayCustQueue.enquqe(20);		
 	}
 
 	@Test

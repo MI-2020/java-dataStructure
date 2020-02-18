@@ -17,7 +17,7 @@ public class LLBasedCustomQueue<E> {
 		private E data;
 		private QNode<E> next;
 
-		QNode(E data) {
+		public QNode(E data) {
 			this.data = data;
 		}
 	}
@@ -39,12 +39,13 @@ public class LLBasedCustomQueue<E> {
 			return null;
 
 		QNode<E> tempNode = front;
+		tempNode.next = null; // dereference so that pick by GC
 		if(front.next == null) {
 			front = rear = null;
 		}else {
 			front = front.next;
 		}
-		tempNode.next = null; // dereference so that pick by GC
+		
 		return tempNode.data;
 	}
 

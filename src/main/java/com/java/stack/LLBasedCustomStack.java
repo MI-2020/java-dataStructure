@@ -9,11 +9,11 @@ package com.java.stack;
  */
 public class LLBasedCustomStack<E> {
 
-	SNode<E> top; 
+	private SNode<E> top; 
 	
-	static class SNode<E> {
+	  private static class SNode<E> {
 
-		E data;
+		private E data;
 		SNode<E> next;
 
 		SNode(E data) {
@@ -36,10 +36,11 @@ public class LLBasedCustomStack<E> {
 		
 		if (top == null) return null;
 		
-		SNode<E> temp =top; 
+		SNode<E> tempNode = top; 
 		top = top.next;
+		tempNode.next =null;	// for deallocate memory
 		
-		return temp.data;
+		return tempNode.data;
 	}
 	
 	public E peek() {
@@ -60,7 +61,6 @@ public class LLBasedCustomStack<E> {
 	}
 	
 	public boolean isEmpty() {
-
 		return top == null ? true:false;
 	}
 }

@@ -9,25 +9,24 @@ package com.java.stack;
  */
 public class ArrayBasedCustomStack<E> {
 
-	private int top=-1; // for removal
+	private int top; // for removal
 	private int capacity;
-	E stack[];
+	private E stack[];
 	
-	@SuppressWarnings("unchecked")
-	ArrayBasedCustomStack(int capacity){
-		this.capacity =capacity;
+	public ArrayBasedCustomStack(int capacity){
+		this.capacity = capacity;
+		top = -1;
 		stack = (E[]) new Object[capacity];
 	}
 
 	public void push(E data) {
 		
-		if(capacity-1 == top) {
+		if(capacity == top + 1) {
 			System.out.println("Stack is full!");
-		}else {
+			return;
+		}
 			top++;
 			stack[top] = data;
-			
-		}
 	}
 
 	public E pop() {
@@ -35,30 +34,31 @@ public class ArrayBasedCustomStack<E> {
 			System.out.println("Stack is Emply!");
 			return null;
 		}
-		else{
 			E data = stack[top];
 			stack[top] = null;
 			top--;
 			return data;
-		}
 	}
 	
 	public E peek() {
-		if(top==-1) {
+		
+		if(top == -1) {
 			System.out.println("Stack is Emply!");
 			return null;
 		}
-		else{
 			return stack[top];
-		}
 	}
 
 	public void traverse() {
 		
-		if(top==0) return;
+		if(top == -1) return;
 		
-		for(int i =0; i <= top; i++) {
+		for(int i = 0; i <= top; i++) {
 			System.out.println(stack[i]);
 		}
+	}
+	
+	public boolean isEmpty() {		
+		return top == -1 ? true:false;
 	}
 }
